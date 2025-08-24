@@ -1,0 +1,126 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: services/auth-service/Dockerfile
+    environment:
+      - SERVICE_NAME=auth-service
+      - PORT=8001
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8001:8001"
+    depends_on:
+      - redis
+
+  train-search-service:
+    build:
+      context: .
+      dockerfile: services/train-search-service/Dockerfile
+    environment:
+      - SERVICE_NAME=train-search-service
+      - PORT=8002
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8002:8002"
+    depends_on:
+      - redis
+
+  booking-service:
+    build:
+      context: .
+      dockerfile: services/booking-service/Dockerfile
+    environment:
+      - SERVICE_NAME=booking-service
+      - PORT=8003
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8003:8003"
+    depends_on:
+      - redis
+
+  passenger-service:
+    build:
+      context: .
+      dockerfile: services/passenger-service/Dockerfile
+    environment:
+      - SERVICE_NAME=passenger-service
+      - PORT=8004
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8004:8004"
+    depends_on:
+      - redis
+
+  captcha-service:
+    build:
+      context: .
+      dockerfile: services/captcha-service/Dockerfile
+    environment:
+      - SERVICE_NAME=captcha-service
+      - PORT=8005
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8005:8005"
+    depends_on:
+      - redis
+
+  payment-service:
+    build:
+      context: .
+      dockerfile: services/payment-service/Dockerfile
+    environment:
+      - SERVICE_NAME=payment-service
+      - PORT=8006
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8006:8006"
+    depends_on:
+      - redis
+
+  orchestrator-service:
+    build:
+      context: .
+      dockerfile: services/orchestrator-service/Dockerfile
+    environment:
+      - SERVICE_NAME=orchestrator-service
+      - PORT=8007
+      - REDIS_URL=redis://redis:6379/0
+      - AUTH_URL=http://auth-service:8001
+      - TRAIN_SEARCH_URL=http://train-search-service:8002
+      - BOOKING_URL=http://booking-service:8003
+      - PASSENGER_URL=http://passenger-service:8004
+      - CAPTCHA_URL=http://captcha-service:8005
+      - PAYMENT_URL=http://payment-service:8006
+      - NOTIFICATION_URL=http://notification-service:8008
+    ports:
+      - "8007:8007"
+    depends_on:
+      - redis
+      - auth-service
+      - train-search-service
+      - booking-service
+      - passenger-service
+      - captcha-service
+      - payment-service
+      - notification-service
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: services/notification-service/Dockerfile
+    environment:
+      - SERVICE_NAME=notification-service
+      - PORT=8008
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8008:8008"
+    depends_on:
+      - redis
