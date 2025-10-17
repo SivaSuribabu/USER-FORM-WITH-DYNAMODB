@@ -1,1 +1,31 @@
-#man page
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Information Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>User Information Form</h2>
+    <form id="userForm">
+      <label>Name:</label><input type="text" id="name" required>
+      <label>Age:</label><input type="number" id="age" required>
+      <label>Mobile:</label><input type="tel" id="mobile" required>
+      <label>State:</label><input type="text" id="state" required>
+      <label>Country:</label><input type="text" id="country" required>
+      <label>Marital Status:</label>
+      <select id="marital" required>
+        <option value="">Select</option>
+        <option value="Single">Single</option>
+        <option value="Married">Married</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="status"></p>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
