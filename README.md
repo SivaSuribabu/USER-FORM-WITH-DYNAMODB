@@ -3,4 +3,5 @@
 1. Create s3 bucket
 2. create smple form code like (index.html, style.css, script.js)
 3. upload the all the files into bucket
-4. 
+4. Make the files to publicly available or apply the bucket policy for public access.
+5. 
