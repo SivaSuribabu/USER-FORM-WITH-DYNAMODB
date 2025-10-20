@@ -1,1 +1,5 @@
-This file contains guide lines to run the application
+#This reporsitory will guide you to how to create s3 bucket and host it as static website.
+
+1. Create s3 bucket
+2. create smple form code like (index.html, style.css, script.js)
+3. 
