@@ -1,45 +1,46 @@
-#Style sheet
 body {
   font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  background-color: #f2f2f2;
 }
 
 .container {
-  width: 400px;
+  width: 300px;
   margin: 50px auto;
-  background: #fff;
   padding: 20px;
-  box-shadow: 0px 0px 10px #ccc;
-  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-h2 {
+h1 {
   text-align: center;
-  margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-input, select {
-  width: 100%;
+input {
   padding: 8px;
-  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
-  background: #0073e6;
+  background-color: #28a745;
   color: white;
+  padding: 10px;
   border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 button:hover {
-  background: #005bb5;
+  background-color: #218838;
+}
+
+#status {
+  text-align: center;
+  margin-top: 10px;
+  color: green;
 }
